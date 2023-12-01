@@ -13,7 +13,9 @@ public static class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddQuickLapContext(builder.Configuration);
+        builder.Services
+            .AddQuickLapContext(builder.Configuration)
+            .AddQuickLapRepositories();
 
         var app = builder.Build();
 
