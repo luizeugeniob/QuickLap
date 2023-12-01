@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickLap", "QuickLap\QuickL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickLap.Data", "QuickLap.Data\QuickLap.Data.csproj", "{198A08DA-C7C6-4AD2-8A2F-8590BA071694}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickLap.Tests", "QuickLap.Tests\QuickLap.Tests.csproj", "{BD6E6FC0-6E93-42E2-A3BB-8B0EF4EB80CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{198A08DA-C7C6-4AD2-8A2F-8590BA071694}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{198A08DA-C7C6-4AD2-8A2F-8590BA071694}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{198A08DA-C7C6-4AD2-8A2F-8590BA071694}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6E6FC0-6E93-42E2-A3BB-8B0EF4EB80CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6E6FC0-6E93-42E2-A3BB-8B0EF4EB80CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6E6FC0-6E93-42E2-A3BB-8B0EF4EB80CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6E6FC0-6E93-42E2-A3BB-8B0EF4EB80CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
