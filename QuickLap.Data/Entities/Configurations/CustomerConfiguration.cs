@@ -9,24 +9,24 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
         builder
             .ToTable("Customers")
-            .HasKey(u => u.Id);
+            .HasKey(c => c.Id);
 
         builder
-            .HasIndex(u => u.Email)
+            .HasIndex(c => c.Email)
             .IsUnique();
 
         builder
-            .Property(u => u.FirstName)
+            .Property(c => c.FirstName)
             .IsRequired()
             .HasMaxLength(100);
 
         builder
-            .Property(u => u.LastName)
+            .Property(c => c.LastName)
             .IsRequired()
             .HasMaxLength(100);
 
         builder
-            .Property(u => u.Email)
+            .Property(c => c.Email)
             .IsRequired()
             .HasMaxLength(100);
     }

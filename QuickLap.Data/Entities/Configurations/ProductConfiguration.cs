@@ -9,15 +9,15 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         builder
             .ToTable("Products")
-            .HasKey(u => u.Id);
+            .HasKey(p => p.Id);
 
         builder
-            .Property(u => u.Name)
+            .Property(p => p.Name)
             .IsRequired()
             .HasMaxLength(100);
 
         builder
-            .Property(u => u.Price)
+            .Property(p => p.Price)
             .IsRequired();
     }
 }
