@@ -13,6 +13,8 @@ public static class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        builder.Services.AddQuickLapContext(builder.Configuration);
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -20,6 +22,8 @@ public static class Program
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+
+            app.ApplyQuickLapMigrations();
         }
 
         app.UseHttpsRedirection();
