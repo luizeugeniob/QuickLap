@@ -30,6 +30,9 @@ public class UserRepository : IUserRepository
 
     public async Task<int> RegisterUserAsync(string email, string password, CancellationToken cancellation = default)
     {
+        if (await _context.Users.AnyAsync(u => u.Email.Equals(email), cancellation))
+            throw new EntityAlreadyExistsException<User>(email);
+
         var user = new User { Email = email, Password = password };
         await _context.Users.AddAsync(user, cancellation);
         await _context.SaveChangesAsync(cancellation);
