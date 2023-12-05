@@ -15,7 +15,7 @@ public class OrderRepository : IOrderRepository
         _context = context;
     }
 
-    public async Task AddOrderItemAsync(int orderId, int productId, int quantity, CancellationToken cancellation)
+    public async Task AddOrderItemAsync(int orderId, int productId, int quantity, CancellationToken cancellation = default)
     {
         var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id.Equals(orderId), cancellation) ?? throw new NotFoundException<Order>(orderId);
 
@@ -37,7 +37,7 @@ public class OrderRepository : IOrderRepository
         await _context.SaveChangesAsync(cancellation);
     }
 
-    public async Task<int> CreateOrderAsync(int customerId, CancellationToken cancellation)
+    public async Task<int> CreateOrderAsync(int customerId, CancellationToken cancellation = default)
     {
         var order = new Order { CustomerId = customerId };
 
