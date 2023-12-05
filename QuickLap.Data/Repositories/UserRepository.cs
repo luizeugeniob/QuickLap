@@ -15,7 +15,7 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public async Task CompleteProfileAsync(int id, string firstName, string lastName, CancellationToken cancellation)
+    public async Task CompleteProfileAsync(int id, string firstName, string lastName, CancellationToken cancellation = default)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Id.Equals(id), cancellation) ?? throw new NotFoundException<User>(id);
 
@@ -25,10 +25,10 @@ public class UserRepository : IUserRepository
         await _context.SaveChangesAsync(cancellation);
     }
 
-    public async Task<bool> LoginAsync(string email, string password, CancellationToken cancellation) 
+    public async Task<bool> LoginAsync(string email, string password, CancellationToken cancellation = default) 
         => await _context.Users.AnyAsync(u => u.Email.Equals(email) && u.Password.Equals(password), cancellation);
 
-    public async Task<int> RegisterUserAsync(string email, string password, CancellationToken cancellation)
+    public async Task<int> RegisterUserAsync(string email, string password, CancellationToken cancellation = default)
     {
         var user = new User { Email = email, Password = password };
         await _context.Users.AddAsync(user, cancellation);
