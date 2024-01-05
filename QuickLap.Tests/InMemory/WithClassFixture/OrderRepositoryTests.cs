@@ -1,13 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QuickLap.Data.Context;
 using QuickLap.Tests.InMemory.WithClassFixture.Base;
 
 namespace QuickLap.Tests.InMemory.WithClassFixture;
 
 [Collection("InMemoryDatabaseShared")]
-public class OrderRepositoryTests : SharedInMemory
+public class OrderRepositoryTests : ClassFixtureTestBase
 {
+    public readonly QuickLapContext Context;
+
     public OrderRepositoryTests(InMemoryDatabaseFixture fixture) : base(fixture)
     {
+        Context = fixture.Context;
     }
 
     private OrderRepository GetRepository() => new(Context);

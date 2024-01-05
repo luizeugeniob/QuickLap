@@ -1,12 +1,16 @@
-﻿using QuickLap.Tests.InMemory.WithClassFixture.Base;
+﻿using QuickLap.Data.Context;
+using QuickLap.Tests.InMemory.WithClassFixture.Base;
 
 namespace QuickLap.Tests.InMemory.WithClassFixture;
 
 [Collection("InMemoryDatabaseShared")]
-public class ProductRepositoryTests : SharedInMemory
+public class ProductRepositoryTests : ClassFixtureTestBase
 {
+    public readonly QuickLapContext Context;
+
     public ProductRepositoryTests(InMemoryDatabaseFixture fixture) : base(fixture)
     {
+        Context = fixture.Context;
     }
 
     private ProductRepository GetRepository() => new(Context);

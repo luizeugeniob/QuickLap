@@ -1,14 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QuickLap.Data.Context;
 using QuickLap.Tests.TempDatabase.WithClassFixture.Base;
 
 namespace QuickLap.Tests.TempDatabase.WithClassFixture;
 
 [Collection("TempDatabaseShared")]
-public class OrderRepositoryTests : SharedTemp
+public class OrderRepositoryTests : ClassFixtureTestBase
 {
+    public readonly QuickLapContext Context;
+
     public OrderRepositoryTests(TempDatabaseFixture fixture) : base(fixture)
     {
-
+        Context = fixture.Context;
     }
 
     private OrderRepository GetRepository() => new(Context);

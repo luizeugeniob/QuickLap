@@ -1,13 +1,16 @@
-﻿using QuickLap.Tests.TempDatabase.WithClassFixture.Base;
+﻿using QuickLap.Data.Context;
+using QuickLap.Tests.TempDatabase.WithClassFixture.Base;
 
 namespace QuickLap.Tests.TempDatabase.WithClassFixture;
 
 [Collection("TempDatabaseShared")]
-public class ProductRepositoryTests : SharedTemp
+public class ProductRepositoryTests : ClassFixtureTestBase
 {
+    public readonly QuickLapContext Context;
+
     public ProductRepositoryTests(TempDatabaseFixture fixture) : base(fixture)
     {
-
+        Context = fixture.Context;
     }
 
     private ProductRepository GetRepository() => new(Context);
