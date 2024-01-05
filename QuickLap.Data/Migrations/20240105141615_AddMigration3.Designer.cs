@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using QuickLap.Data.Context;
@@ -11,9 +12,11 @@ using QuickLap.Data.Context;
 namespace QuickLap.Data.Migrations
 {
     [DbContext(typeof(QuickLapContext))]
-    partial class QuickLapContextModelSnapshot : ModelSnapshot
+    [Migration("20240105141615_AddMigration3")]
+    partial class AddMigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,6 @@ namespace QuickLap.Data.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("DateTime1")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -56,35 +56,6 @@ namespace QuickLap.Data.Migrations
                     b.ToTable("Customers", (string)null);
                 });
 
-            modelBuilder.Entity("QuickLap.Data.Entities.EntityOne", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("DateTime1")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("String1")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("String2")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("EntityOnes", (string)null);
-                });
-
             modelBuilder.Entity("QuickLap.Data.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -97,15 +68,6 @@ namespace QuickLap.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("CustomerId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("DateTime1")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("Int1")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Int2")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -122,18 +84,6 @@ namespace QuickLap.Data.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<bool?>("Bool1")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime?>("DateTime1")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DateTime2Changed")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("Int1")
-                        .HasColumnType("integer");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("integer");
@@ -170,9 +120,10 @@ namespace QuickLap.Data.Migrations
                         .HasColumnType("numeric");
 
                     b.Property<string>("String1")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("String2Changed")
+                    b.Property<string>("String2")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -188,7 +139,7 @@ namespace QuickLap.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DateTime1")
+                    b.Property<DateTime>("DateTime1")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<decimal?>("Decimal1")
@@ -206,7 +157,7 @@ namespace QuickLap.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int?>("Int1")
+                    b.Property<int>("Int1")
                         .HasColumnType("integer");
 
                     b.Property<string>("LastName")
@@ -224,15 +175,6 @@ namespace QuickLap.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("QuickLap.Data.Entities.EntityOne", b =>
-                {
-                    b.HasOne("QuickLap.Data.Entities.Customer", null)
-                        .WithMany("EntityOnes")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("QuickLap.Data.Entities.Order", b =>
@@ -261,8 +203,6 @@ namespace QuickLap.Data.Migrations
 
             modelBuilder.Entity("QuickLap.Data.Entities.Customer", b =>
                 {
-                    b.Navigation("EntityOnes");
-
                     b.Navigation("Orders");
                 });
 

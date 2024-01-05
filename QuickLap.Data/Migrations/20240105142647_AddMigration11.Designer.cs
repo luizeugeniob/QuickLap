@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using QuickLap.Data.Context;
@@ -11,9 +12,11 @@ using QuickLap.Data.Context;
 namespace QuickLap.Data.Migrations
 {
     [DbContext(typeof(QuickLapContext))]
-    partial class QuickLapContextModelSnapshot : ModelSnapshot
+    [Migration("20240105142647_AddMigration11")]
+    partial class AddMigration11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,12 +67,6 @@ namespace QuickLap.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("DateTime1")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("String1")
                         .IsRequired()
                         .HasColumnType("text");
@@ -79,8 +76,6 @@ namespace QuickLap.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("EntityOnes", (string)null);
                 });
@@ -129,7 +124,7 @@ namespace QuickLap.Data.Migrations
                     b.Property<DateTime?>("DateTime1")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateTime2Changed")
+                    b.Property<DateTime?>("DateTime2")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("Int1")
@@ -226,15 +221,6 @@ namespace QuickLap.Data.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("QuickLap.Data.Entities.EntityOne", b =>
-                {
-                    b.HasOne("QuickLap.Data.Entities.Customer", null)
-                        .WithMany("EntityOnes")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("QuickLap.Data.Entities.Order", b =>
                 {
                     b.HasOne("QuickLap.Data.Entities.Customer", null)
@@ -261,8 +247,6 @@ namespace QuickLap.Data.Migrations
 
             modelBuilder.Entity("QuickLap.Data.Entities.Customer", b =>
                 {
-                    b.Navigation("EntityOnes");
-
                     b.Navigation("Orders");
                 });
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using QuickLap.Data.Context;
@@ -11,9 +12,11 @@ using QuickLap.Data.Context;
 namespace QuickLap.Data.Migrations
 {
     [DbContext(typeof(QuickLapContext))]
-    partial class QuickLapContextModelSnapshot : ModelSnapshot
+    [Migration("20240105142850_AddMigration12")]
+    partial class AddMigration12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,9 +69,6 @@ namespace QuickLap.Data.Migrations
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("integer");
-
-                    b.Property<DateTime>("DateTime1")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("String1")
                         .IsRequired()
@@ -129,7 +129,7 @@ namespace QuickLap.Data.Migrations
                     b.Property<DateTime?>("DateTime1")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateTime2Changed")
+                    b.Property<DateTime?>("DateTime2")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("Int1")
