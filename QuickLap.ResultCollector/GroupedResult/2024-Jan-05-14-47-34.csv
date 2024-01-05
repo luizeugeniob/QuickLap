@@ -1,0 +1,5 @@
+Test Type,Average Duration in Milliseconds
+InMemoryWithClassFixture,50.43917499999996
+InMemoryWithoutClassFixture,219.05523166666666
+TempDatabaseWithClassFixture,8.440547666666669
+TempDatabaseWithoutClassFixture,1105.501020333333
